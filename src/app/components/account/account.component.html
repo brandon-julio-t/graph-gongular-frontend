@@ -4,26 +4,26 @@
   <br />
 
   <mat-card-title>
-    {{ user.name }}
+    {{ user?.name }}
   </mat-card-title>
 
   <mat-card-content>
     <p>
-      <small>role: {{ user.userRole.name }}</small>
+      <small>role: {{ user?.userRole?.name }}</small>
     </p>
 
     <p>
-      Email: {{ user.email }}
+      Email: {{ user?.email }}
       <br />
-      Birthdate: {{ user.dateOfBirth | date }}
+      Birthdate: {{ user?.dateOfBirth | date }}
       <br />
-      Gender: {{ user.gender }}
+      Gender: {{ user?.gender }}
     </p>
 
     <p>
       Address:
       <br />
-      {{ user.address }}
+      {{ user?.address }}
     </p>
   </mat-card-content>
 
