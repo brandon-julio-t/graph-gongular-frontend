@@ -27,10 +27,12 @@ export class AuthGuard implements CanActivate {
     return this.authService.watch().valueChanges.pipe(
       map((data) => {
         const user = data.data.auth;
+
         if (!user) {
           this.router.navigateByUrl('/login').then();
           return false;
         }
+
         return true;
       }),
       catchError((err) => {

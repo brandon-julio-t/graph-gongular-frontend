@@ -4,12 +4,23 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AccountComponent } from './components/account/account.component';
+import { UpdateAccountComponent } from './components/update-account/update-account.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    pathMatch: 'full',
+    children: [
+      {
+        path: 'account',
+        component: AccountComponent,
+      },
+      {
+        path: 'account/update',
+        component: UpdateAccountComponent,
+      },
+    ],
     canActivate: [AuthGuard],
   },
   { path: 'login', component: LoginComponent },

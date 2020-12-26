@@ -38,19 +38,17 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const { email, password } = this.loginForm.controls;
-    if (email.invalid || password.invalid) {
+    if (this.loginForm.status === 'INVALID') {
       this.loginForm.markAllAsTouched();
       return;
     }
 
+    const { email, password } = this.loginForm.value;
+
     this.isLoading = true;
 
     this.loginService
-      .watch({
-        email: email.value,
-        password: password.value,
-      })
+      .watch({ email, password })
       .valueChanges.pipe(
         retry(3),
         catchError((e: ApolloError) => {

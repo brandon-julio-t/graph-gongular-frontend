@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Confirm Account Deletion</h2>
+<div mat-dialog-content>Are you sure you want to delete your account?</div>
+<div mat-dialog-actions>
+  <button (click)="doAccountDelete(true)" color="warn" mat-stroked-button>
+    Yes
+  </button>
+  <button (click)="doAccountDelete(false)" color="primary" mat-raised-button>
+    No
+  </button>
+</div>

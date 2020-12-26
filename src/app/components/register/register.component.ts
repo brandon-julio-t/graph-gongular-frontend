@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
       confirmPassword: fb.control('', [Validators.required]),
       gender: fb.control('Male', [
         Validators.required,
-        Validators.pattern('(^Male$|^Female$)'),
+        Validators.pattern('(^male$|^female$)'),
       ]),
       dateOfBirth: fb.control('', Validators.required),
       address: fb.control('', Validators.required),
@@ -43,6 +43,11 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (this.registerForm.status === 'INVALID') {
+      this.registerForm.markAllAsTouched();
+      return;
+    }
+
     const {
       name,
       email,
@@ -51,24 +56,9 @@ export class RegisterComponent implements OnInit {
       gender,
       dateOfBirth,
       address,
-    } = this.registerForm.controls;
+    } = this.registerForm.value;
 
-    if (
-      [
-        name,
-        email,
-        password,
-        confirmPassword,
-        gender,
-        dateOfBirth,
-        address,
-      ].some((field) => field.invalid)
-    ) {
-      this.registerForm.markAllAsTouched();
-      return;
-    }
-
-    this.isPasswordMatch = password.value === confirmPassword.value;
+    this.isPasswordMatch = password === confirmPassword;
     if (!this.isPasswordMatch) {
       this.registerForm.controls.confirmPassword.setErrors({
         confirmPassword: `Password doesn't match`,
@@ -80,12 +70,12 @@ export class RegisterComponent implements OnInit {
 
     this.registerService
       .mutate({
-        name: name.value,
-        email: email.value,
-        password: password.value,
-        gender: gender.value,
-        dateOfBirth: new Date(dateOfBirth.value).toISOString(),
-        address: address.value,
+        name,
+        email,
+        password,
+        gender,
+        dateOfBirth: new Date(dateOfBirth).toISOString(),
+        address,
       })
       .subscribe(() => {
         this.isLoading = false;

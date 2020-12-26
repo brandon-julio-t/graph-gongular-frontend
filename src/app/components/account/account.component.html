@@ -1,0 +1,38 @@
+<mat-card class="container center-modal h-auto">
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
+  <br />
+
+  <mat-card-title>
+    {{ user.name }}
+  </mat-card-title>
+
+  <mat-card-content>
+    <p>
+      <small>role: {{ user.userRole.name }}</small>
+    </p>
+
+    <p>
+      Email: {{ user.email }}
+      <br />
+      Birthdate: {{ user.dateOfBirth | date }}
+      <br />
+      Gender: {{ user.gender }}
+    </p>
+
+    <p>
+      Address:
+      <br />
+      {{ user.address }}
+    </p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <a color="accent" href="/account/update" mat-stroked-button>
+      Update Account
+    </a>
+    <button (click)="openDeleteAccountDialog()" color="warn" mat-button>
+      Delete Account
+    </button>
+  </mat-card-actions>
+</mat-card>

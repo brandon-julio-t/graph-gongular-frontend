@@ -1,0 +1,37 @@
+<mat-drawer-container hasBackdrop>
+  <mat-drawer #drawer mode="over">
+    <a href="/" mat-menu-item>
+      <mat-icon>home</mat-icon>
+      Home
+    </a>
+  </mat-drawer>
+  <mat-drawer-content>
+    <mat-toolbar>
+      <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="spacer"></span>
+      <button
+        [matMenuTriggerFor]="account"
+        aria-label="account"
+        mat-icon-button
+      >
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <mat-menu #account="matMenu">
+      <a href="/account" mat-menu-item>
+        <mat-icon>person</mat-icon>
+        Account
+      </a>
+      <mat-divider></mat-divider>
+      <button (click)="onLogout()" mat-menu-item>
+        <mat-icon>power_settings_new</mat-icon>
+        Logout
+      </button>
+    </mat-menu>
+
+    <ng-content></ng-content>
+  </mat-drawer-content>
+</mat-drawer-container>

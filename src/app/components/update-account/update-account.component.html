@@ -1,0 +1,95 @@
+<mat-card class="container center-modal h-auto">
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+  <br />
+  <mat-card-title>Update Account</mat-card-title>
+
+  <form [formGroup]="updateAccountForm">
+    <mat-card-content class="w-full">
+      <mat-form-field class="w-full">
+        <mat-label>
+          <label for="name">Name</label>
+        </mat-label>
+        <input formControlName="name" id="name" matInput type="text" />
+        <mat-error *ngIf="updateAccountForm.controls.name.hasError('required')">
+          Name is required
+        </mat-error>
+      </mat-form-field>
+
+      <br />
+
+      <mat-form-field class="w-full">
+        <mat-label>
+          <label for="email">Email</label>
+        </mat-label>
+        <input formControlName="email" id="email" matInput type="text" />
+        <mat-error
+          *ngIf="updateAccountForm.controls.email.hasError('required')"
+        >
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="updateAccountForm.controls.email.hasError('email')">
+          Email is invalid
+        </mat-error>
+      </mat-form-field>
+
+      <br />
+
+      <mat-form-field class="w-full">
+        <mat-label>
+          <label for="dateOfBirth">Date of Birth</label>
+        </mat-label>
+        <input
+          [matDatepicker]="picker"
+          formControlName="dateOfBirth"
+          id="dateOfBirth"
+          matInput
+        />
+        <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error
+          *ngIf="updateAccountForm.controls.dateOfBirth.hasError('required')"
+        >
+          Date of Birth is required
+        </mat-error>
+      </mat-form-field>
+
+      <br />
+
+      <div class="w-full">
+        <label id="gender">Gender</label>
+        <br />
+        <mat-radio-group aria-labelledby="gender" formControlName="gender">
+          <mat-radio-button value="male">Male</mat-radio-button>
+          <br />
+          <mat-radio-button value="female">Female</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <br />
+
+      <mat-form-field class="w-full">
+        <mat-label>
+          <label for="address">Address</label>
+        </mat-label>
+        <textarea formControlName="address" id="address" matInput></textarea>
+        <mat-error
+          *ngIf="updateAccountForm.controls.address.hasError('required')"
+        >
+          Address is required
+        </mat-error>
+      </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-actions class="w-full">
+      <button
+        (click)="onSubmit()"
+        color="primary"
+        mat-raised-button
+        type="button"
+      >
+        Submit
+      </button>
+      <a color="warn" href="/account" mat-button>Cancel</a>
+    </mat-card-actions>
+  </form>
+</mat-card>

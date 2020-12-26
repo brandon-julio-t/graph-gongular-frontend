@@ -17,6 +17,18 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RegisterComponent } from './components/register/register.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { AccountComponent } from './components/account/account.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DeleteAccountConfirmDialogComponent } from './components/delete-account-confirm-dialog/delete-account-confirm-dialog.component';
+import { UpdateAccountComponent } from './components/update-account/update-account.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +36,10 @@ import { MatRadioModule } from '@angular/material/radio';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
+    ToolbarComponent,
+    AccountComponent,
+    DeleteAccountConfirmDialogComponent,
+    UpdateAccountComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +55,14 @@ import { MatRadioModule } from '@angular/material/radio';
     MatProgressBarModule,
     MatSnackBarModule,
     MatRadioModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule,
+    MatDividerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSidenavModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
