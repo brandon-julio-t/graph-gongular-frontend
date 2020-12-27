@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { gql, Query } from 'apollo-angular';
+import { gql, Mutation } from 'apollo-angular';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LogoutService extends Query<Response> {
+export class LogoutService extends Mutation<Response> {
   document = gql`
-    query logout {
+    mutation logout {
       logout
     }
   `;

@@ -4,14 +4,14 @@ import { gql, Mutation } from 'apollo-angular';
 @Injectable({
   providedIn: 'root',
 })
-export class LoginService extends Mutation<Response> {
+export class UploadService extends Mutation<Response> {
   document = gql`
-    mutation login($email: String!, $password: String!) {
-      login(input: { email: $email, password: $password })
+    mutation upload($files: [Upload!]!) {
+      upload(files: $files)
     }
   `;
 }
 
 export interface Response {
-  login: string;
+  upload: boolean;
 }

@@ -1,0 +1,22 @@
+<mat-progress-bar
+  *ngIf="isLoading"
+  class="mb-2"
+  mode="indeterminate"
+></mat-progress-bar>
+
+<p class="text-right">
+  <span class="mr-2">{{ files?.length || 0 }} files</span>
+
+  <button (click)="upload.click()" class="mr-2" mat-raised-button>
+    <mat-icon>backup</mat-icon>
+    Upload
+  </button>
+</p>
+
+<p class="text-right">
+  <button (click)="onClick()" color="primary" mat-raised-button type="button">
+    Submit
+  </button>
+</p>
+
+<input #upload (change)="onChange($event.target)" hidden multiple type="file" />

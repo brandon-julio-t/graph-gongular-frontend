@@ -48,8 +48,8 @@ export class LoginComponent implements OnInit {
     this.isLoading = true;
 
     this.loginService
-      .watch({ email, password })
-      .valueChanges.pipe(
+      .mutate({ email, password })
+      .pipe(
         retry(3),
         catchError((e: ApolloError) => {
           this.snackBar.open(e.message, 'Close', { duration: 4000 });

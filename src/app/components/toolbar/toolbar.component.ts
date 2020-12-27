@@ -12,8 +12,8 @@ export class ToolbarComponent implements OnInit {
   ngOnInit(): void {}
 
   onLogout(): void {
-    this.logoutService.watch().valueChanges.subscribe((data) => {
-      if (data.data.logout) {
+    this.logoutService.mutate().subscribe((data) => {
+      if (data.data?.logout) {
         window.location.reload();
       }
     });

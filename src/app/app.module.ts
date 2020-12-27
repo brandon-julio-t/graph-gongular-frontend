@@ -10,7 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -29,6 +29,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteAccountConfirmDialogComponent } from './components/delete-account-confirm-dialog/delete-account-confirm-dialog.component';
 import { UpdateAccountComponent } from './components/update-account/update-account.component';
+import { StorageComponent } from './components/storage/storage.component';
+import { StorageUploadComponent } from './components/storage-upload/storage-upload.component';
+import { StorageListingComponent } from './components/storage-listing/storage-listing.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { StorageItemComponent } from './components/storage-item/storage-item.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +45,10 @@ import { UpdateAccountComponent } from './components/update-account/update-accou
     AccountComponent,
     DeleteAccountConfirmDialogComponent,
     UpdateAccountComponent,
+    StorageComponent,
+    StorageUploadComponent,
+    StorageListingComponent,
+    StorageItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +72,8 @@ import { UpdateAccountComponent } from './components/update-account/update-accou
     MatNativeDateModule,
     MatSidenavModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

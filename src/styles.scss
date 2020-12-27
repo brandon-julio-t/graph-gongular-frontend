@@ -28,12 +28,71 @@ body {
   height: auto;
 }
 
-.center-modal {
+.flex {
   display: flex;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.justify-center {
   justify-content: center;
+}
+
+.items-center {
   align-items: center;
 }
 
 .spacer {
   flex: 1 1 auto;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.ml-2 {
+  margin-left: 2rem;
+}
+
+.mr-2 {
+  margin-right: 2rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
+.my-2 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.mx-auto {
+  margin: 0 auto;
+}
+
+.w-auto {
+  width: auto;
+}
+
+.w-screen-sm {
+  width: 640px;
+}
+
+.p-2 {
+  padding: 2rem;
+}
+
+.grid {
+  display: grid;
+}
+
+.gap-2 {
+  gap: 2rem;
+}
+
+.grid-cols-6 {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
 }

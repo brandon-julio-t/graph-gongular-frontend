@@ -1,0 +1,13 @@
+<mat-spinner
+  *ngIf="isLoading"
+  class="mx-auto h-full"
+  mode="indeterminate"
+></mat-spinner>
+<div class="grid grid-cols-6 gap-2" *ngIf="!isLoading">
+  <app-storage-item
+    (update)="onUpdate($event)"
+    (delete)="onDelete($event)"
+    *ngFor="let file of files"
+    [file]="file"
+  ></app-storage-item>
+</div>
