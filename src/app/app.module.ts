@@ -34,6 +34,8 @@ import { StorageUploadComponent } from './components/storage-upload/storage-uplo
 import { StorageListingComponent } from './components/storage-listing/storage-listing.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { StorageItemComponent } from './components/storage-item/storage-item.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -74,6 +76,7 @@ import { StorageItemComponent } from './components/storage-item/storage-item.com
     MatDialogModule,
     MatProgressSpinnerModule,
     FormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent],

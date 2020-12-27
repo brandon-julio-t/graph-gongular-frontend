@@ -13,10 +13,10 @@
     </mat-form-field>
   </mat-card-title>
   <mat-card-title *ngIf="!isEditing">
-    {{ file.filename }}
+    {{ file?.filename }}
   </mat-card-title>
 
-  <mat-card-content>{{ file.size | number }} bytes</mat-card-content>
+  <mat-card-content>{{ file?.size | number }} bytes</mat-card-content>
 
   <mat-card-actions *ngIf="isEditing">
     <button (click)="onEditDone()" color="primary" mat-button>
