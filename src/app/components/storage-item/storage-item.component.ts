@@ -10,7 +10,7 @@ import { DeleteFileService } from '../../services/delete-file.service';
   styleUrls: ['./storage-item.component.scss'],
 })
 export class StorageItemComponent implements OnInit {
-  @Input() file: UserFile;
+  @Input() file: UserFile | null = null;
   @Output() update = new EventEmitter<UserFile>();
   @Output() delete = new EventEmitter<UserFile>();
 
@@ -27,7 +27,7 @@ export class StorageItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.newFilename.setValue(this.file.filename);
+    this.newFilename.setValue(this.file?.filename);
   }
 
   onEditDone(): void {
@@ -39,7 +39,7 @@ export class StorageItemComponent implements OnInit {
     this.isLoading = true;
 
     this.updateFileService
-      .mutate({ id: this.file.id, filename: this.newFilename.value })
+      .mutate({ id: this.file?.id, filename: this.newFilename.value })
       .subscribe((data) => {
         const updatedFile = data.data?.updateFile;
         if (updatedFile) {
@@ -52,7 +52,7 @@ export class StorageItemComponent implements OnInit {
   onDelete(): void {
     this.isLoading = true;
 
-    this.deleteFileService.mutate({ id: this.file.id }).subscribe((data) => {
+    this.deleteFileService.mutate({ id: this.file?.id }).subscribe((data) => {
       const deletedFile = data.data?.deleteFile;
       if (deletedFile) {
         this.delete.emit(deletedFile);
