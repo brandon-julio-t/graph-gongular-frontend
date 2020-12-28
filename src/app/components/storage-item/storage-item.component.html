@@ -2,7 +2,7 @@
   <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
   <br />
   <mat-card-title *ngIf="isEditing">
-    <mat-form-field>
+    <mat-form-field class="w-full">
       <mat-label>
         <label for="filename">Filename</label>
       </mat-label>
@@ -13,23 +13,27 @@
     </mat-form-field>
   </mat-card-title>
   <mat-card-title *ngIf="!isEditing">
-    {{ file?.filename }}
+    {{ file?.filename }}.{{ file?.extension }}
   </mat-card-title>
 
   <mat-card-content>{{ file?.size | number }} bytes</mat-card-content>
 
   <mat-card-actions *ngIf="isEditing">
-    <button (click)="onEditDone()" color="primary" mat-button>
+    <button (click)="onEditDone()" color="primary" mat-raised-button>
       <mat-icon>done</mat-icon>
       Done
     </button>
   </mat-card-actions>
   <mat-card-actions *ngIf="!isEditing">
-    <button (click)="isEditing = true" mat-button>
+    <button (click)="onDownload()" color="primary" mat-raised-button>
+      <mat-icon>get_app</mat-icon>
+      Download
+    </button>
+    <button (click)="isEditing = true" mat-raised-button>
       <mat-icon>edit</mat-icon>
       Edit
     </button>
-    <button (click)="onDelete()" color="warn" mat-button>
+    <button (click)="onDelete()" color="warn" mat-raised-button>
       <mat-icon>delete</mat-icon>
       Delete
     </button>

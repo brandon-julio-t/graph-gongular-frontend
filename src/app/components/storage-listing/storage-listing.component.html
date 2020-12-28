@@ -3,7 +3,7 @@
   class="mx-auto h-full"
   mode="indeterminate"
 ></mat-spinner>
-<div class="grid grid-cols-6 gap-2" *ngIf="!isLoading">
+<div class="grid grid-cols-4 gap-2" *ngIf="!isLoading">
   <app-storage-item
     (update)="onUpdate($event)"
     (delete)="onDelete($event)"

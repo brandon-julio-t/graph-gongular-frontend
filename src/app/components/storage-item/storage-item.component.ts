@@ -3,6 +3,8 @@ import { UserFile } from '../../interfaces/user-file';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { UpdateFileService } from '../../services/update-file.service';
 import { DeleteFileService } from '../../services/delete-file.service';
+import { catchError } from 'rxjs/operators';
+import { DownloadService } from '../../services/download.service';
 
 @Component({
   selector: 'app-storage-item',
@@ -21,7 +23,8 @@ export class StorageItemComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private updateFileService: UpdateFileService,
-    private deleteFileService: DeleteFileService
+    private deleteFileService: DeleteFileService,
+    private downloadService: DownloadService
   ) {
     this.newFilename = fb.control('', Validators.required);
   }
@@ -31,6 +34,11 @@ export class StorageItemComponent implements OnInit {
   }
 
   onEditDone(): void {
+    if (this.newFilename.value === this.file?.filename) {
+      this.isEditing = false;
+      return;
+    }
+
     if (this.newFilename.invalid) {
       this.newFilename.markAllAsTouched();
       return;
@@ -52,12 +60,31 @@ export class StorageItemComponent implements OnInit {
   onDelete(): void {
     this.isLoading = true;
 
-    this.deleteFileService.mutate({ id: this.file?.id }).subscribe((data) => {
-      const deletedFile = data.data?.deleteFile;
-      if (deletedFile) {
-        this.delete.emit(deletedFile);
-        this.isLoading = false;
-      }
-    });
+    this.deleteFileService
+      .mutate({ id: this.file?.id })
+      .pipe(
+        catchError((err) => {
+          this.isLoading = false;
+          throw err;
+        })
+      )
+      .subscribe((data) => {
+        const deletedFile = data.data?.deleteFile;
+        if (deletedFile) {
+          this.delete.emit(deletedFile);
+          this.isLoading = false;
+        }
+      });
+  }
+
+  onDownload(): void {
+    this.downloadService
+      .watch({ id: this.file?.id })
+      .valueChanges.subscribe((data) =>
+        this.downloadService.downloadBase64(
+          data.data.download,
+          `${this.file?.filename}.${this.file?.extension}`
+        )
+      );
   }
 }

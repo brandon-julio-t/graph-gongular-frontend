@@ -58,7 +58,6 @@ export class LoginComponent implements OnInit {
         })
       )
       .subscribe((e) => {
-        console.log(e);
         this.isLoading = false;
         this.router.navigateByUrl('/').then();
       });

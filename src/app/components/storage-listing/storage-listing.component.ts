@@ -23,7 +23,7 @@ export class StorageListingComponent implements OnInit {
     this.storageService
       .watch({}, { fetchPolicy: 'network-only' })
       .valueChanges.subscribe((data) => {
-        this.files = data.data.auth.files;
+        this.files = data.data.files;
         this.isLoading = false;
       });
   }

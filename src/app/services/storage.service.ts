@@ -8,22 +8,20 @@ import { UserFile } from '../interfaces/user-file';
 })
 export class StorageService extends Query<Response> {
   document = gql`
-    query auth {
-      auth {
-        files {
-          id
-          path
-          filename
-          size
-          contentType
-        }
+    query files {
+      files {
+        id
+        path
+        filename
+        extension
+        size
+        contentType
+        userId
       }
     }
   `;
 }
 
 export interface Response {
-  auth: {
-    files: UserFile[];
-  };
+  files: UserFile[];
 }
