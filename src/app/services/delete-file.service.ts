@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { gql } from '@apollo/client/core';
-import { UserFile } from '../interfaces/user-file';
+import { FileUpload } from '../interfaces/file-upload';
 import { Mutation } from 'apollo-angular';
 
 @Injectable({
@@ -11,8 +11,8 @@ export class DeleteFileService extends Mutation<Response> {
     mutation deleteFile($id: ID!) {
       deleteFile(id: $id) {
         id
-        path
         filename
+        extension
         size
         contentType
       }
@@ -21,5 +21,5 @@ export class DeleteFileService extends Mutation<Response> {
 }
 
 export interface Response {
-  deleteFile: UserFile;
+  deleteFile: FileUpload;
 }

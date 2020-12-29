@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { gql } from '@apollo/client/core';
 import { Query } from 'apollo-angular';
-import { UserFile } from '../interfaces/user-file';
+import { FileUpload } from '../interfaces/file-upload';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,6 @@ export class StorageService extends Query<Response> {
     query files {
       files {
         id
-        path
         filename
         extension
         size
@@ -23,5 +22,5 @@ export class StorageService extends Query<Response> {
 }
 
 export interface Response {
-  files: UserFile[];
+  files: FileUpload[];
 }

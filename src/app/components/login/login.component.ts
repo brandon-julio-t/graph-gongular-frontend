@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ApolloError } from '@apollo/client/core';
 import { AuthService } from '../../services/auth.service';
@@ -50,9 +50,7 @@ export class LoginComponent implements OnInit {
     this.loginService
       .mutate({ email, password })
       .pipe(
-        retry(3),
         catchError((e: ApolloError) => {
-          this.snackBar.open(e.message, 'Close', { duration: 4000 });
           this.isLoading = false;
           throw e;
         })

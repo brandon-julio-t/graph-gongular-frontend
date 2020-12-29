@@ -1,13 +1,27 @@
 import { NgModule } from '@angular/core';
 import { APOLLO_OPTIONS } from 'apollo-angular';
-import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core';
+import {
+  ApolloClientOptions,
+  ApolloLink,
+  InMemoryCache,
+} from '@apollo/client/core';
 import { HttpLink } from 'apollo-angular/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
-const uri = 'https://graph-gongular-backend.herokuapp.com/graphql'; // <-- add the URL of the GraphQL server here
-// const uri = 'http://localhost:8080/graphql'; // <-- add the URL of the GraphQL server here
-export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
+import {
+  createErrorHandler,
+  createHttpLinkHandler,
+} from '../factories/apollo-factory';
+
+export function createApollo(
+  httpLink: HttpLink,
+  snackBar: MatSnackBar
+): ApolloClientOptions<any> {
   return {
-    link: httpLink.create({ uri, withCredentials: true, useMultipart: true }),
+    link: ApolloLink.from([
+      createErrorHandler(snackBar),
+      createHttpLinkHandler(httpLink),
+    ]),
     cache: new InMemoryCache(),
   };
 }
@@ -17,7 +31,7 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
     {
       provide: APOLLO_OPTIONS,
       useFactory: createApollo,
-      deps: [HttpLink],
+      deps: [HttpLink, MatSnackBar],
     },
   ],
 })

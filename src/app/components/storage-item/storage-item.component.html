@@ -7,8 +7,8 @@
         <label for="filename">Filename</label>
       </mat-label>
       <input [formControl]="newFilename" id="filename" matInput type="text" />
-      <mat-error *ngIf="newFilename.hasError('required')"
-        >Filename is required
+      <mat-error *ngIf="newFilename.hasError('required')">
+        Filename is required
       </mat-error>
     </mat-form-field>
   </mat-card-title>
@@ -25,17 +25,34 @@
     </button>
   </mat-card-actions>
   <mat-card-actions *ngIf="!isEditing">
-    <button (click)="onDownload()" color="primary" mat-raised-button>
+    <button
+      (click)="onDownload()"
+      (mouseleave)="labelDownload.className = 'hidden'"
+      (mouseover)="labelDownload.className = 'inline'"
+      color="primary"
+      mat-raised-button
+    >
       <mat-icon>get_app</mat-icon>
-      Download
+      <span #labelDownload class="hidden">Download</span>
     </button>
-    <button (click)="isEditing = true" mat-raised-button>
+    <button
+      (click)="isEditing = true"
+      (mouseleave)="labelEdit.className = 'hidden'"
+      (mouseover)="labelEdit.className = 'inline'"
+      mat-raised-button
+    >
       <mat-icon>edit</mat-icon>
-      Edit
+      <span #labelEdit class="hidden">Edit</span>
     </button>
-    <button (click)="onDelete()" color="warn" mat-raised-button>
+    <button
+      (click)="onDelete()"
+      (mouseleave)="labelDelete.className = 'hidden'"
+      (mouseover)="labelDelete.className = 'inline'"
+      color="warn"
+      mat-raised-button
+    >
       <mat-icon>delete</mat-icon>
-      Delete
+      <span #labelDelete class="hidden">Delete</span>
     </button>
   </mat-card-actions>
 </mat-card>

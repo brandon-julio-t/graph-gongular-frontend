@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { gql } from '@apollo/client/core';
 import { Mutation } from 'apollo-angular';
-import { UserFile } from '../interfaces/user-file';
+import { FileUpload } from '../interfaces/file-upload';
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +11,8 @@ export class UpdateFileService extends Mutation<Response> {
     mutation updateFile($id: ID!, $filename: String!) {
       updateFile(input: { id: $id, filename: $filename }) {
         id
-        path
         filename
+        extension
         size
         contentType
       }
@@ -21,5 +21,5 @@ export class UpdateFileService extends Mutation<Response> {
 }
 
 export interface Response {
-  updateFile: UserFile;
+  updateFile: FileUpload;
 }

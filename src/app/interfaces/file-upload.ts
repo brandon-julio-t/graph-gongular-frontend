@@ -1,6 +1,5 @@
-export interface UserFile {
+export interface FileUpload {
   id: string;
-  path: string;
   filename: string;
   extension: string;
   size: number;

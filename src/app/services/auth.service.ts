@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { gql, Query, QueryRef } from 'apollo-angular';
+import { gql, Query } from 'apollo-angular';
 import { User } from '../interfaces/user';
-import { EmptyObject, WatchQueryOptionsAlone } from 'apollo-angular/types';
 
 @Injectable({
   providedIn: 'root',

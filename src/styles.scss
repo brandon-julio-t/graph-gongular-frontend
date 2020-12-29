@@ -104,3 +104,11 @@ body {
 .grid-cols-6 {
   grid-template-columns: repeat(6, minmax(0, 1fr));
 }
+
+.hidden {
+  display: none;
+}
+
+.inline {
+  display: inline;
+}

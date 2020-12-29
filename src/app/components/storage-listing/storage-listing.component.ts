@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../../services/storage.service';
-import { UserFile } from '../../interfaces/user-file';
+import { FileUpload } from '../../interfaces/file-upload';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-storage-listing',
@@ -8,7 +9,7 @@ import { UserFile } from '../../interfaces/user-file';
   styleUrls: ['./storage-listing.component.scss'],
 })
 export class StorageListingComponent implements OnInit {
-  files: UserFile[] = [];
+  files: FileUpload[] = [];
   isLoading = false;
 
   constructor(private storageService: StorageService) {}
@@ -22,21 +23,30 @@ export class StorageListingComponent implements OnInit {
 
     this.storageService
       .watch({}, { fetchPolicy: 'network-only' })
-      .valueChanges.subscribe((data) => {
+      .valueChanges.pipe(
+        catchError((err) => {
+          this.isLoading = false;
+          throw err;
+        })
+      )
+      .subscribe((data) => {
         this.files = data.data.files;
         this.isLoading = false;
       });
   }
 
-  onUpdate(updatedFile: UserFile): void {
-    this.files.forEach((file, idx) => {
-      if (file.id === updatedFile.id) {
-        this.files[idx] = updatedFile;
-      }
-    });
+  onUpdate(updatedFile: FileUpload): void {
+    const newFiles = new Array(this.files.length);
+
+    for (let i = 0; i < this.files.length; i++) {
+      const file = this.files[i];
+      newFiles[i] = file.id === updatedFile.id ? updatedFile : file;
+    }
+
+    this.files = newFiles;
   }
 
-  onDelete(deletedFile: UserFile): void {
+  onDelete(deletedFile: FileUpload): void {
     this.files = this.files.filter((file) => file.id !== deletedFile.id);
   }
 }

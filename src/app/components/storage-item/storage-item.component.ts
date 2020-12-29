@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { UserFile } from '../../interfaces/user-file';
+import { FileUpload } from '../../interfaces/file-upload';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { UpdateFileService } from '../../services/update-file.service';
 import { DeleteFileService } from '../../services/delete-file.service';
@@ -12,9 +12,9 @@ import { DownloadService } from '../../services/download.service';
   styleUrls: ['./storage-item.component.scss'],
 })
 export class StorageItemComponent implements OnInit {
-  @Input() file: UserFile | null = null;
-  @Output() update = new EventEmitter<UserFile>();
-  @Output() delete = new EventEmitter<UserFile>();
+  @Input() file: FileUpload | null = null;
+  @Output() update = new EventEmitter<FileUpload>();
+  @Output() delete = new EventEmitter<FileUpload>();
 
   newFilename: FormControl;
   isEditing = false;
@@ -78,13 +78,22 @@ export class StorageItemComponent implements OnInit {
   }
 
   onDownload(): void {
+    this.isLoading = true;
+
     this.downloadService
       .watch({ id: this.file?.id })
-      .valueChanges.subscribe((data) =>
+      .valueChanges.pipe(
+        catchError((err) => {
+          this.isLoading = false;
+          throw err;
+        })
+      )
+      .subscribe((data) => {
         this.downloadService.downloadBase64(
           data.data.download,
           `${this.file?.filename}.${this.file?.extension}`
-        )
-      );
+        );
+        this.isLoading = false;
+      });
   }
 }
