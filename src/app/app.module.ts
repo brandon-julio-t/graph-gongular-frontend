@@ -28,7 +28,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteAccountConfirmDialogComponent } from './components/delete-account-confirm-dialog/delete-account-confirm-dialog.component';
-import { UpdateAccountComponent } from './components/update-account/update-account.component';
+import { AccountUpdateComponent } from './components/account-update/account-update.component';
 import { StorageComponent } from './components/storage/storage.component';
 import { StorageUploadComponent } from './components/storage-upload/storage-upload.component';
 import { StorageListingComponent } from './components/storage-listing/storage-listing.component';
@@ -36,6 +36,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { StorageItemComponent } from './components/storage-item/storage-item.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { AccountViewComponent } from './components/account-view/account-view.component';
 
 @NgModule({
   declarations: [
@@ -46,11 +47,12 @@ import { environment } from '../environments/environment';
     ToolbarComponent,
     AccountComponent,
     DeleteAccountConfirmDialogComponent,
-    UpdateAccountComponent,
+    AccountUpdateComponent,
     StorageComponent,
     StorageUploadComponent,
     StorageListingComponent,
     StorageItemComponent,
+    AccountViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,7 +78,9 @@ import { environment } from '../environments/environment';
     MatDialogModule,
     MatProgressSpinnerModule,
     FormsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

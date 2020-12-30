@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../interfaces/user';
 import { AuthService } from '../../services/auth.service';
@@ -6,11 +6,13 @@ import { UpdateAccountService } from '../../services/update-account.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-update-account',
-  templateUrl: './update-account.component.html',
-  styleUrls: ['./update-account.component.scss'],
+  selector: 'app-account-update',
+  templateUrl: './account-update.component.html',
+  styleUrls: ['./account-update.component.scss'],
 })
-export class UpdateAccountComponent implements OnInit {
+export class AccountUpdateComponent implements OnInit {
+  @Output() done = new EventEmitter<void>();
+
   user: User | null = null;
   updateAccountForm: FormGroup;
   isLoading = true;
@@ -83,6 +85,7 @@ export class UpdateAccountComponent implements OnInit {
         if (data.data?.updateAccount) {
           this.router.navigateByUrl('/account').then();
           this.isLoading = false;
+          this.done.emit();
         }
       });
   }

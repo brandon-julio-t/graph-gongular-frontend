@@ -5,7 +5,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AccountComponent } from './components/account/account.component';
-import { UpdateAccountComponent } from './components/update-account/update-account.component';
+import { AccountUpdateComponent } from './components/account-update/account-update.component';
 import { StorageComponent } from './components/storage/storage.component';
 
 const routes: Routes = [
@@ -23,7 +23,7 @@ const routes: Routes = [
       },
       {
         path: 'account/update',
-        component: UpdateAccountComponent,
+        component: AccountUpdateComponent,
       },
     ],
     canActivate: [AuthGuard],

@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
       email: fb.control('', [Validators.required, Validators.email]),
       password: fb.control('', [Validators.required, Validators.minLength(8)]),
       confirmPassword: fb.control('', [Validators.required]),
-      gender: fb.control('Male', [
+      gender: fb.control('male', [
         Validators.required,
         Validators.pattern('(^male$|^female$)'),
       ]),
@@ -57,7 +57,6 @@ export class RegisterComponent implements OnInit {
       dateOfBirth,
       address,
     } = this.registerForm.value;
-
     this.isPasswordMatch = password === confirmPassword;
     if (!this.isPasswordMatch) {
       this.registerForm.controls.confirmPassword.setErrors({
