@@ -8,7 +8,6 @@ import { gql, Mutation } from 'apollo-angular';
 export class UpdateAccountService extends Mutation<Response> {
   document = gql`
     mutation updateAccount(
-      $id: ID!
       $name: String!
       $email: String!
       $dateOfBirth: Time!
@@ -17,7 +16,6 @@ export class UpdateAccountService extends Mutation<Response> {
     ) {
       updateAccount(
         input: {
-          id: $id
           name: $name
           email: $email
           dateOfBirth: $dateOfBirth

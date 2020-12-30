@@ -8,19 +8,22 @@ import { FileUpload } from '../interfaces/file-upload';
 })
 export class StorageService extends Query<Response> {
   document = gql`
-    query files {
-      files {
-        id
-        filename
-        extension
-        size
-        contentType
-        userId
+    query fileUploads {
+      auth {
+        fileUploads {
+          id
+          filename
+          extension
+          size
+          contentType
+        }
       }
     }
   `;
 }
 
 export interface Response {
-  files: FileUpload[];
+  auth: {
+    fileUploads: FileUpload[];
+  };
 }

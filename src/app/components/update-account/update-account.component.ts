@@ -73,7 +73,6 @@ export class UpdateAccountComponent implements OnInit {
 
     this.updateAccountService
       .mutate({
-        id: this.user?.id,
         name,
         email,
         dateOfBirth: new Date(dateOfBirth).toISOString(),

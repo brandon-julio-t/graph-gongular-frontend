@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { User } from '../interfaces/user';
 import { gql, Mutation } from 'apollo-angular';
 
 @Injectable({
@@ -7,24 +6,16 @@ import { gql, Mutation } from 'apollo-angular';
 })
 export class DeleteAccountService extends Mutation<Response> {
   document = gql`
-    mutation deleteAccount($id: ID!) {
-      deleteAccount(input: { id: $id }) {
+    mutation deleteAccount {
+      deleteAccount {
         id
-        name
-        email
-        password
-        dateOfBirth
-        gender
-        address
-        userRole {
-          id
-          name
-        }
       }
     }
   `;
 }
 
 export interface Response {
-  deleteAccount: User;
+  deleteAccount: {
+    id: string;
+  };
 }

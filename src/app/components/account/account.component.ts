@@ -34,13 +34,11 @@ export class AccountComponent implements OnInit {
         if (isDeleteConfirmed) {
           this.isLoading = true;
 
-          this.deleteAccountService
-            .mutate({ id: this.user?.id })
-            .subscribe((data) => {
-              if (data.data?.deleteAccount) {
-                window.location.reload();
-              }
-            });
+          this.deleteAccountService.mutate().subscribe((data) => {
+            if (data.data?.deleteAccount) {
+              window.location.reload();
+            }
+          });
         }
       });
   }

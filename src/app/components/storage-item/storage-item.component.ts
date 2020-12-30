@@ -14,7 +14,7 @@ import { DownloadService } from '../../services/download.service';
 export class StorageItemComponent implements OnInit {
   @Input() file: FileUpload | null = null;
   @Output() update = new EventEmitter<FileUpload>();
-  @Output() delete = new EventEmitter<FileUpload>();
+  @Output() delete = new EventEmitter<string>();
 
   newFilename: FormControl;
   isEditing = false;
@@ -71,7 +71,7 @@ export class StorageItemComponent implements OnInit {
       .subscribe((data) => {
         const deletedFile = data.data?.deleteFile;
         if (deletedFile) {
-          this.delete.emit(deletedFile);
+          this.delete.emit(deletedFile.id);
           this.isLoading = false;
         }
       });

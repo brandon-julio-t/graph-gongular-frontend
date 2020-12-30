@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { gql } from '@apollo/client/core';
-import { FileUpload } from '../interfaces/file-upload';
 import { Mutation } from 'apollo-angular';
 
 @Injectable({
@@ -11,15 +10,13 @@ export class DeleteFileService extends Mutation<Response> {
     mutation deleteFile($id: ID!) {
       deleteFile(id: $id) {
         id
-        filename
-        extension
-        size
-        contentType
       }
     }
   `;
 }
 
 export interface Response {
-  deleteFile: FileUpload;
+  deleteFile: {
+    id: string;
+  };
 }

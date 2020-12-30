@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { gql, Mutation } from 'apollo-angular';
-import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root',
@@ -26,21 +25,13 @@ export class RegisterService extends Mutation<Response> {
         }
       ) {
         id
-        name
-        email
-        password
-        dateOfBirth
-        gender
-        address
-        userRole {
-          id
-          name
-        }
       }
     }
   `;
 }
 
 export interface Response {
-  register: User;
+  register: {
+    id: string;
+  };
 }

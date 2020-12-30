@@ -30,7 +30,7 @@ export class StorageListingComponent implements OnInit {
         })
       )
       .subscribe((data) => {
-        this.files = data.data.files;
+        this.files = data.data.auth.fileUploads;
         this.isLoading = false;
       });
   }
@@ -46,7 +46,7 @@ export class StorageListingComponent implements OnInit {
     this.files = newFiles;
   }
 
-  onDelete(deletedFile: FileUpload): void {
-    this.files = this.files.filter((file) => file.id !== deletedFile.id);
+  onDelete(deletedId: string): void {
+    this.files = this.files.filter((file) => file.id !== deletedId);
   }
 }
