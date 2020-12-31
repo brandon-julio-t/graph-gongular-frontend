@@ -13,21 +13,21 @@
   </mat-card-content>
   <mat-card-actions>
     <button
-      mat-raised-button
       (click)="addFriend()"
-      color="primary"
       (mouseenter)="addFriendLabel.className = ''"
       (mouseleave)="addFriendLabel.className = 'hidden'"
+      color="primary"
+      mat-raised-button
     >
       <mat-icon>group_add</mat-icon>
       <span #addFriendLabel class="hidden">Add Friend</span>
     </button>
     <button
-      mat-button
       (click)="viewDetail()"
-      color="accent"
       (mouseenter)="viewDetailLabel.className = ''"
       (mouseleave)="viewDetailLabel.className = 'hidden'"
+      color="accent"
+      mat-button
     >
       <mat-icon>person_search</mat-icon>
       <span #viewDetailLabel class="hidden">View Detail</span>

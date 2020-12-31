@@ -8,9 +8,8 @@ describe('StorageUploadComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StorageUploadComponent ]
-    })
-    .compileComponents();
+      declarations: [StorageUploadComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -8,9 +8,8 @@ describe('FriendViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FriendViewComponent ]
-    })
-    .compileComponents();
+      declarations: [FriendViewComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
