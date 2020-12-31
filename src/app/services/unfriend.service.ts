@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { gql, Query } from 'apollo-angular';
+import { gql, Mutation } from 'apollo-angular';
 import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService extends Query<Response> {
+export class UnfriendService extends Mutation<Response> {
   document = gql`
-    query auth {
-      auth {
+    mutation removeFriend($friendId: ID!) {
+      removeFriend(friendId: $friendId) {
         id
         name
         email
@@ -25,5 +25,5 @@ export class AuthService extends Query<Response> {
 }
 
 interface Response {
-  auth: User | null;
+  removeFriend: User;
 }

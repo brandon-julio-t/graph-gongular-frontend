@@ -5,19 +5,21 @@ import { User } from '../interfaces/user';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService extends Query<Response> {
+export class FriendsService extends Query<Response> {
   document = gql`
-    query auth {
+    query friends {
       auth {
-        id
-        name
-        email
-        dateOfBirth
-        gender
-        address
-        userRole {
+        friends {
           id
           name
+          email
+          dateOfBirth
+          gender
+          address
+          userRole {
+            id
+            name
+          }
         }
       }
     }
@@ -25,5 +27,7 @@ export class AuthService extends Query<Response> {
 }
 
 interface Response {
-  auth: User | null;
+  auth: {
+    friends: User[];
+  };
 }

@@ -22,7 +22,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { AccountComponent } from './components/account/account.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -37,6 +36,12 @@ import { StorageItemComponent } from './components/storage-item/storage-item.com
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AccountViewComponent } from './components/account-view/account-view.component';
+import { FriendsViewComponent } from './components/friends-view/friends-view.component';
+import { FriendsSearchComponent } from './components/friends-search/friends-search.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { UserViewComponent } from './components/user-view/user-view.component';
+import { FriendViewComponent } from './components/friend-view/friend-view.component';
+import { UserViewDetailDialogComponent } from './components/user-view-detail-dialog/user-view-detail-dialog.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +50,6 @@ import { AccountViewComponent } from './components/account-view/account-view.com
     LoginComponent,
     RegisterComponent,
     ToolbarComponent,
-    AccountComponent,
     DeleteAccountConfirmDialogComponent,
     AccountUpdateComponent,
     StorageComponent,
@@ -53,6 +57,11 @@ import { AccountViewComponent } from './components/account-view/account-view.com
     StorageListingComponent,
     StorageItemComponent,
     AccountViewComponent,
+    FriendsViewComponent,
+    FriendsSearchComponent,
+    UserViewComponent,
+    FriendViewComponent,
+    UserViewDetailDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,6 +87,7 @@ import { AccountViewComponent } from './components/account-view/account-view.com
     MatDialogModule,
     MatProgressSpinnerModule,
     FormsModule,
+    MatGridListModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),

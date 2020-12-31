@@ -30,7 +30,7 @@ export class RegisterService extends Mutation<Response> {
   `;
 }
 
-export interface Response {
+interface Response {
   register: {
     id: string;
   };

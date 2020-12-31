@@ -5,10 +5,10 @@ import { User } from '../interfaces/user';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService extends Query<Response> {
+export class AllUsersService extends Query<Response> {
   document = gql`
-    query auth {
-      auth {
+    query allUsers {
+      allUsers {
         id
         name
         email
@@ -25,5 +25,5 @@ export class AuthService extends Query<Response> {
 }
 
 interface Response {
-  auth: User | null;
+  allUsers: User[];
 }

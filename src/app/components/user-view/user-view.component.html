@@ -1,0 +1,36 @@
+<mat-card>
+  <mat-card-title>{{ user?.name }}</mat-card-title>
+  <mat-card-content>
+    <p>
+      {{ user?.gender }}
+    </p>
+    <p>
+      {{ user?.dateOfBirth | date }}
+    </p>
+    <p>
+      {{ user?.email }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      mat-raised-button
+      (click)="addFriend()"
+      color="primary"
+      (mouseenter)="addFriendLabel.className = ''"
+      (mouseleave)="addFriendLabel.className = 'hidden'"
+    >
+      <mat-icon>group_add</mat-icon>
+      <span #addFriendLabel class="hidden">Add Friend</span>
+    </button>
+    <button
+      mat-button
+      (click)="viewDetail()"
+      color="accent"
+      (mouseenter)="viewDetailLabel.className = ''"
+      (mouseleave)="viewDetailLabel.className = 'hidden'"
+    >
+      <mat-icon>person_search</mat-icon>
+      <span #viewDetailLabel class="hidden">View Detail</span>
+    </button>
+  </mat-card-actions>
+</mat-card>

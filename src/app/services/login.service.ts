@@ -12,6 +12,6 @@ export class LoginService extends Mutation<Response> {
   `;
 }
 
-export interface Response {
+interface Response {
   login: string;
 }

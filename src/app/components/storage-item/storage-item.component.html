@@ -28,7 +28,7 @@
     <button
       (click)="onDownload()"
       (mouseleave)="labelDownload.className = 'hidden'"
-      (mouseover)="labelDownload.className = 'inline'"
+      (mouseover)="labelDownload.className = ''"
       color="primary"
       mat-raised-button
     >
@@ -38,7 +38,7 @@
     <button
       (click)="isEditing = true"
       (mouseleave)="labelEdit.className = 'hidden'"
-      (mouseover)="labelEdit.className = 'inline'"
+      (mouseover)="labelEdit.className = ''"
       mat-raised-button
     >
       <mat-icon>edit</mat-icon>
@@ -47,7 +47,7 @@
     <button
       (click)="onDelete()"
       (mouseleave)="labelDelete.className = 'hidden'"
-      (mouseover)="labelDelete.className = 'inline'"
+      (mouseover)="labelDelete.className = ''"
       color="warn"
       mat-raised-button
     >

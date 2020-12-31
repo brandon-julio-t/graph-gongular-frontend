@@ -3,8 +3,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { onError } from '@apollo/client/link/error';
 import { ApolloLink } from '@apollo/client/core';
 
-// const uri = 'https://graph-gongular-backend.herokuapp.com/graphql'; // <-- add the URL of the GraphQL server here
-const uri = 'http://localhost:8080/graphql'; // <-- add the URL of the GraphQL server here
+const uri = 'https://graph-gongular-backend.herokuapp.com/graphql'; // <-- add the URL of the GraphQL server here
+// const uri = 'http://localhost:8080/graphql'; // <-- add the URL of the GraphQL server here
 
 function createHttpLinkHandler(httpLink: HttpLink): HttpLinkHandler {
   return httpLink.create({

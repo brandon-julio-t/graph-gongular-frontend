@@ -1,8 +1,0 @@
-<app-account-view
-  *ngIf="!isEditing"
-  (update)="isEditing = true"
-></app-account-view>
-<app-account-update
-  *ngIf="isEditing"
-  (done)="isEditing = false"
-></app-account-update>

@@ -1,0 +1,36 @@
+<mat-card>
+  <p *ngIf="isLoading">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </p>
+
+  <mat-card-title>{{ friend?.name }}</mat-card-title>
+  <mat-card-content>
+    <p>
+      {{ friend?.email }} <br />
+      {{ friend?.gender }} <br />
+      {{ friend?.dateOfBirth | date }} <br />
+      {{ friend?.address }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      (mouseleave)="chatLabel.className = 'hidden'"
+      (mouseover)="chatLabel.className = ''"
+      color="primary"
+      mat-raised-button
+    >
+      <mat-icon>chat</mat-icon>
+      <span #chatLabel class="hidden">Chat</span>
+    </button>
+    <button
+      (click)="onUnfriend()"
+      (mouseleave)="unfriendLabel.className = 'hidden'"
+      (mouseover)="unfriendLabel.className = ''"
+      color="warn"
+      mat-button
+    >
+      <mat-icon>person_remove</mat-icon>
+      <span #unfriendLabel class="hidden">Unfriend</span>
+    </button>
+  </mat-card-actions>
+</mat-card>

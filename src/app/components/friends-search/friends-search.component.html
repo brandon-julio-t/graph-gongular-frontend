@@ -1,0 +1,22 @@
+<p>
+  <a
+    (mouseleave)="backLabel.className = 'hidden'"
+    (mouseover)="backLabel.className = ''"
+    href="/friends"
+    mat-button
+  >
+    <mat-icon>arrow_back</mat-icon>
+    <span #backLabel class="hidden">Back</span>
+  </a>
+</p>
+
+<mat-grid-list *ngIf="!isLoading" cols="4" gutterSize="2rem" rowHeight="2:1">
+  <mat-grid-tile *ngFor="let user of users">
+    <app-user-view [user]="user" class="w-full"></app-user-view>
+  </mat-grid-tile>
+</mat-grid-list>
+<mat-progress-spinner
+  *ngIf="isLoading"
+  class="w-full mx-auto"
+  mode="indeterminate"
+></mat-progress-spinner>

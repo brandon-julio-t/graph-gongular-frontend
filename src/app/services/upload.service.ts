@@ -12,6 +12,6 @@ export class UploadService extends Mutation<Response> {
   `;
 }
 
-export interface Response {
+interface Response {
   upload: boolean;
 }

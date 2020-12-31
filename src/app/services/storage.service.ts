@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { gql } from '@apollo/client/core';
-import { Query } from 'apollo-angular';
+import { gql, Query } from 'apollo-angular';
 import { FileUpload } from '../interfaces/file-upload';
 
 @Injectable({
@@ -22,7 +21,7 @@ export class StorageService extends Query<Response> {
   `;
 }
 
-export interface Response {
+interface Response {
   auth: {
     fileUploads: FileUpload[];
   };

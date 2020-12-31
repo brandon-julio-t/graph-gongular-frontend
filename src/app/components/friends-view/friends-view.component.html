@@ -1,0 +1,25 @@
+<p>
+  <a href="/friends/search" mat-raised-button>
+    <mat-icon>group_add</mat-icon>
+    Search Friends
+  </a>
+</p>
+
+<p *ngIf="!isLoading && friends.length === 0" class="text-center">
+  You have no friends
+</p>
+<mat-progress-spinner
+  *ngIf="isLoading"
+  class="w-full mx-auto"
+  mode="indeterminate"
+></mat-progress-spinner>
+
+<mat-grid-list cols="4" gutterSize="2rem" rowHeight="2:1">
+  <mat-grid-tile *ngFor="let friend of friends">
+    <app-friend-view
+      (unfriend)="onUnfriend($event)"
+      [friend]="friend"
+      class="w-full"
+    ></app-friend-view>
+  </mat-grid-tile>
+</mat-grid-list>

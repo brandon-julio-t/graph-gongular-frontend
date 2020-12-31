@@ -14,7 +14,7 @@ export class DeleteAccountService extends Mutation<Response> {
   `;
 }
 
-export interface Response {
+interface Response {
   deleteAccount: {
     id: string;
   };

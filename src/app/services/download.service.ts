@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { gql } from '@apollo/client/core';
-import { Query } from 'apollo-angular';
+import { gql, Query } from 'apollo-angular';
 
 @Injectable({
   providedIn: 'root',
@@ -37,6 +36,6 @@ export class DownloadService extends Query<Response> {
   }
 }
 
-export interface Response {
+interface Response {
   download: string;
 }

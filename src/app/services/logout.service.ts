@@ -12,6 +12,6 @@ export class LogoutService extends Mutation<Response> {
   `;
 }
 
-export interface Response {
+interface Response {
   logout: boolean;
 }
