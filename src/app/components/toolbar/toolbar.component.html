@@ -1,10 +1,10 @@
 <mat-drawer-container hasBackdrop>
   <mat-drawer #drawer mode="over">
-    <a href="/storage" mat-menu-item>
+    <a routerLink="/storage" mat-menu-item>
       <mat-icon>storage</mat-icon>
       Storage
     </a>
-    <a href="/friends" mat-menu-item>
+    <a routerLink="/friends" mat-menu-item>
       <mat-icon>people</mat-icon>
       Friends
     </a>
@@ -25,7 +25,7 @@
     </mat-toolbar>
 
     <mat-menu #account="matMenu">
-      <a href="/account" mat-menu-item>
+      <a routerLink="/account" mat-menu-item>
         <mat-icon>person</mat-icon>
         Account
       </a>
