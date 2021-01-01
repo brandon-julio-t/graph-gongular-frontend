@@ -4,23 +4,42 @@ import {
   ApolloClientOptions,
   ApolloLink,
   InMemoryCache,
+  split,
 } from '@apollo/client/core';
 import { HttpLink } from 'apollo-angular/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { getMainDefinition } from '@apollo/client/utilities';
 
 import {
-  createErrorHandler,
-  createHttpLinkHandler,
+  createErrorLink,
+  createHttpLink,
+  createWebSocketLink,
 } from '../factories/apollo-factory';
+import { StoreService } from './services/store.service';
 
 export function createApollo(
   httpLink: HttpLink,
-  snackBar: MatSnackBar
+  snackBar: MatSnackBar,
+  storeService: StoreService
 ): ApolloClientOptions<any> {
+  const onError = createErrorLink(snackBar);
+  const ws = createWebSocketLink(snackBar, storeService);
+  const http = createHttpLink(httpLink);
+
   return {
     link: ApolloLink.from([
-      createErrorHandler(snackBar),
-      createHttpLinkHandler(httpLink),
+      onError,
+      split(
+        ({ query }) => {
+          const definition = getMainDefinition(query);
+          return (
+            definition.kind === 'OperationDefinition' &&
+            definition.operation === 'subscription'
+          );
+        },
+        ws,
+        http
+      ),
     ]),
     cache: new InMemoryCache(),
   };
@@ -31,7 +50,7 @@ export function createApollo(
     {
       provide: APOLLO_OPTIONS,
       useFactory: createApollo,
-      deps: [HttpLink, MatSnackBar],
+      deps: [HttpLink, MatSnackBar, StoreService],
     },
   ],
 })

@@ -42,6 +42,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { UserViewComponent } from './components/user-view/user-view.component';
 import { FriendViewComponent } from './components/friend-view/friend-view.component';
 import { UserViewDetailDialogComponent } from './components/user-view-detail-dialog/user-view-detail-dialog.component';
+import { PublicChatComponent } from './components/public-chat/public-chat.component';
+import { PublicChatMessageComponent } from './components/public-chat-message/public-chat-message.component';
+import { PublicChatSendMessageComponent } from './components/public-chat-send-message/public-chat-send-message.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +65,9 @@ import { UserViewDetailDialogComponent } from './components/user-view-detail-dia
     UserViewComponent,
     FriendViewComponent,
     UserViewDetailDialogComponent,
+    PublicChatComponent,
+    PublicChatMessageComponent,
+    PublicChatSendMessageComponent,
   ],
   imports: [
     BrowserModule,

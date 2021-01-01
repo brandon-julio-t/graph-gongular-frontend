@@ -2,19 +2,49 @@ import { HttpLink, HttpLinkHandler } from 'apollo-angular/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { onError } from '@apollo/client/link/error';
 import { ApolloLink } from '@apollo/client/core';
+import { WebSocketLink } from '@apollo/client/link/ws';
+import { StoreService } from '../app/services/store.service';
 
-const uri = 'https://graph-gongular-backend.herokuapp.com/graphql'; // <-- add the URL of the GraphQL server here
-// const uri = 'http://localhost:8080/graphql'; // <-- add the URL of the GraphQL server here
+const production = {
+  http: 'https://graph-gongular-backend.herokuapp.com/graphql',
+  websocket: 'wss://graph-gongular-backend.herokuapp.com/graphql',
+};
 
-function createHttpLinkHandler(httpLink: HttpLink): HttpLinkHandler {
+const development = {
+  http: 'http://localhost:8080/graphql',
+  websocket: 'ws://localhost:8080/graphql',
+};
+
+const current = production;
+
+function createHttpLink(httpLink: HttpLink): HttpLinkHandler {
   return httpLink.create({
-    uri,
+    uri: current.http,
     withCredentials: true,
     useMultipart: true,
   });
 }
 
-function createErrorHandler(snackBar: MatSnackBar): ApolloLink {
+function createWebSocketLink(
+  snackBar: MatSnackBar,
+  storeService: StoreService
+): WebSocketLink {
+  return new WebSocketLink({
+    uri: current.websocket,
+    options: {
+      reconnect: true,
+      lazy: true,
+      connectionCallback: () => {
+        storeService.websocketOk = true;
+        snackBar.open('Successfully connected. Start chatting now.', 'Close', {
+          duration: 4000,
+        });
+      },
+    },
+  });
+}
+
+function createErrorLink(snackBar: MatSnackBar): ApolloLink {
   return onError((error) => {
     const { graphQLErrors, networkError } = error;
 
@@ -37,4 +67,4 @@ function createErrorHandler(snackBar: MatSnackBar): ApolloLink {
   });
 }
 
-export { createHttpLinkHandler, createErrorHandler };
+export { createHttpLink, createWebSocketLink, createErrorLink };

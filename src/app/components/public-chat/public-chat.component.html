@@ -1,0 +1,20 @@
+<section>
+  <mat-progress-spinner
+    *ngIf="!storeService.websocketOk"
+    class="w-full mx-auto"
+    mode="indeterminate"
+  ></mat-progress-spinner>
+  <div *ngIf="storeService.websocketOk" class="public-chat-container">
+    <div class="chat-container">
+      <mat-grid-list cols="1" gutterSize="2rem" rowHeight="10rem">
+        <mat-grid-tile *ngFor="let publicMessage of publicMessages">
+          <app-public-chat-message
+            [publicMessage]="publicMessage"
+            class="flex w-full"
+          ></app-public-chat-message>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+    <app-public-chat-send-message class="w-full"></app-public-chat-send-message>
+  </div>
+</section>

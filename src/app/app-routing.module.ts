@@ -9,6 +9,7 @@ import { FriendsSearchComponent } from './components/friends-search/friends-sear
 import { FriendsViewComponent } from './components/friends-view/friends-view.component';
 import { AccountViewComponent } from './components/account-view/account-view.component';
 import { AccountUpdateComponent } from './components/account-update/account-update.component';
+import { PublicChatComponent } from './components/public-chat/public-chat.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,10 @@ const routes: Routes = [
       {
         path: 'friends/search',
         component: FriendsSearchComponent,
+      },
+      {
+        path: 'public-chat',
+        component: PublicChatComponent,
       },
     ],
   },

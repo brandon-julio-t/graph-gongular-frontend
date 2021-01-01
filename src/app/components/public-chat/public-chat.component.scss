@@ -1,0 +1,19 @@
+section {
+  position: relative;
+}
+
+.public-chat-container {
+  height: calc(100vh - 4rem - 64px);
+}
+
+.chat-container {
+  padding: 0 1rem;
+  height: calc(100vh - 4rem - 64px - 72px);
+  overflow-y: scroll;
+}
+
+app-public-chat-send-message {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}

@@ -1,0 +1,17 @@
+<section>
+  <mat-form-field>
+    <mat-label>
+      <label for="message">Message</label>
+    </mat-label>
+    <textarea
+      [(ngModel)]="message"
+      [disabled]="isLoading"
+      id="message"
+      matInput
+    ></textarea>
+    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+  </mat-form-field>
+  <div>
+    <button (click)="onSend()" color="primary" mat-raised-button>Send</button>
+  </div>
+</section>
